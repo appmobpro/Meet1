@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26025602CD31E91E8ADD5CA8 /* Pods_TodoMVPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E576C39E6D3F9AF90B05382D /* Pods_TodoMVPTests.framework */; };
 		52842D3F84AE6A901EB5E4B2 /* Pods_TodoMVP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6381CC6C0960AE6B2513830F /* Pods_TodoMVP.framework */; };
+		A12B47742081E15E0025DF8B /* TaskStatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B47732081E15E0025DF8B /* TaskStatePresenter.swift */; };
 		A5827ADA2081C91A004E51E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5827AD92081C91A004E51E2 /* AppDelegate.swift */; };
 		A5827ADF2081C91A004E51E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5827ADD2081C91A004E51E2 /* Main.storyboard */; };
 		A5827AE12081C91B004E51E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5827AE02081C91B004E51E2 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		4A6D84318512F3397CFCBBFC /* Pods-TodoMVPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoMVPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodoMVPTests/Pods-TodoMVPTests.release.xcconfig"; sourceTree = "<group>"; };
 		6381CC6C0960AE6B2513830F /* Pods_TodoMVP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoMVP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CFEBADFCA677206805CFE82 /* Pods-TodoMVPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoMVPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodoMVPTests/Pods-TodoMVPTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A12B47732081E15E0025DF8B /* TaskStatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStatePresenter.swift; sourceTree = "<group>"; };
 		A3F4523E10195CE5B46A98D0 /* Pods-TodoMVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoMVP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodoMVP/Pods-TodoMVP.debug.xcconfig"; sourceTree = "<group>"; };
 		A5827AD62081C91A004E51E2 /* TodoMVP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoMVP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5827AD92081C91A004E51E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				A5827AFF2081CBC8004E51E2 /* TaskEditPresenter.swift */,
 				A5827B042081D2A9004E51E2 /* TasksPresenter.swift */,
+				A12B47732081E15E0025DF8B /* TaskStatePresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				A5827B052081D2A9004E51E2 /* TasksPresenter.swift in Sources */,
 				A5827AFB2081CABB004E51E2 /* TasksViewController.swift in Sources */,
 				A5827AFD2081CB0B004E51E2 /* TaskEditViewController.swift in Sources */,
+				A12B47742081E15E0025DF8B /* TaskStatePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

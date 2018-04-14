@@ -44,6 +44,9 @@ extension TasksViewController: UITableViewDataSource {
         let task = tasksPresenter.task(indexPath.row)
         cell.taskTitleLabel.text = task.title
         cell.taskContentLabel.text = task.content
+        cell.taskId = task.id
+        cell.done = task.done
+        cell.delegate = self
         return cell
     }
 
@@ -51,3 +54,9 @@ extension TasksViewController: UITableViewDataSource {
 
 }
 
+extension TasksViewController: TaskTableViewCellDelegate {
+    func didChangeDoneState(to done: Bool, taskId: String) {
+        let taskStatePresenter = TaskStatePresenter(taskId: taskId)
+        taskStatePresenter.done = done
+    }
+}
