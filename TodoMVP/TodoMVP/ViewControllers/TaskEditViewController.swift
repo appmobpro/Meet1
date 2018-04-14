@@ -10,20 +10,24 @@ import UIKit
 
 class TaskEditViewController: UITableViewController {
 
-    let taskEditPresenter = TaskEditPresenter()
+    @IBOutlet weak var titleTextFiled: UITextField!
+    @IBOutlet weak var contentTextField: UITextField!
+
+    var taskId: String?
+    private var taskEditPresenter: TaskEditPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        taskEditPresenter = TaskEditPresenter(taskId: taskId)
+        titleTextFiled.text = taskEditPresenter.taskEntity.title
+        contentTextField.text = taskEditPresenter.taskEntity.content
     }
-
+    
     @IBAction func editingChangedTitle(_ sender: UITextField) {
-
-        taskEditPresenter.title = sender.text ?? ""
+        taskEditPresenter.updateTitle(title: sender.text ?? "")
     }
 
     @IBAction func editingChangedContent(_ sender: UITextField) {
-
-        taskEditPresenter.content = sender.text ?? ""
-
+        taskEditPresenter.updateContent(content: sender.text ?? "")
     }
 }

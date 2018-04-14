@@ -7,25 +7,25 @@
 //
 
 import Foundation
-import RealmSwift
 
 final class TaskStatePresenter {
-    private let realm = try! Realm()
     private var taskEntity: TaskEntity
+    private let taskRepository = TaskRepository()
 
     let taskId: String
     
     init(taskId: String) {
         self.taskId = taskId
-        taskEntity = realm.object(ofType: TaskEntity.self, forPrimaryKey: taskId)!
+        taskEntity = taskRepository.findById(taskId)!
     }
     
     var done: Bool = false {
         didSet {
-            try! realm.write {
-                taskEntity.done = done
-                realm.add(taskEntity, update: true)
-            }
+            taskRepository.add(entity: taskEntity,
+                               update: true,
+                               operation: {[done](entity) in
+                                entity.done = done
+            })
         }
     }
 }

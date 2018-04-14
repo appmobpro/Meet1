@@ -20,14 +20,14 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskContentLabel: UILabel!
-    private var done: Bool = false {
+    var done: Bool = false {
         didSet {
             doneButton.setTitle(done ? "☑" : "□", for: .normal)
-            delegate?.didChangeDoneState(to: done, taskId: taskId)
         }
     }
 
     @IBAction func doneTask(_ sender: Any) {
         done = !done
+        delegate?.didChangeDoneState(to: done, taskId: taskId)
     }
 }

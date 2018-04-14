@@ -7,19 +7,17 @@
 //
 
 import Foundation
-import RealmSwift
 
 final class TasksPresenter {
 
-    let realm = try! Realm()
-
-    lazy var tasks = realm.objects(TaskEntity.self)
-
+    private let taskRepository = TaskRepository()
+    
     var taskCount: Int {
-        return tasks.count
+        return taskRepository.count
     }
 
     func task(_ index: Int) -> TaskEntity {
+        let tasks = taskRepository.findByAll()
         return tasks[index]
     }
 }

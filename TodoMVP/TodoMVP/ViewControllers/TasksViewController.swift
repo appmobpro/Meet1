@@ -12,7 +12,7 @@ class TasksViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let tasksPresenter = TasksPresenter()
+    private let tasksPresenter = TasksPresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +25,6 @@ class TasksViewController: UIViewController {
         super.viewWillAppear(animated)
 
         tableView.reloadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -49,9 +44,21 @@ extension TasksViewController: UITableViewDataSource {
         cell.delegate = self
         return cell
     }
+}
 
+extension TasksViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task = self.tasksPresenter.task(indexPath.row)
+        performSegue(withIdentifier: "edit", sender: task.id)
+    }
+}
 
-
+extension TasksViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let taskId = sender as! String
+        let controller = segue.destination as! TaskEditViewController
+        controller.taskId = taskId
+    }
 }
 
 extension TasksViewController: TaskTableViewCellDelegate {
