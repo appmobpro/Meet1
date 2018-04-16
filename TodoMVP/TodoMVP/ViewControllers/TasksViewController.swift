@@ -13,6 +13,7 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let tasksPresenter = TasksPresenter()
+    private static let editSegueIdentifier = "edit"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,15 +50,17 @@ extension TasksViewController: UITableViewDataSource {
 extension TasksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = self.tasksPresenter.task(indexPath.row)
-        performSegue(withIdentifier: "edit", sender: task.id)
+        performSegue(withIdentifier: TasksViewController.editSegueIdentifier, sender: task.id)
     }
 }
 
 extension TasksViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let taskId = sender as! String
-        let controller = segue.destination as! TaskEditViewController
-        controller.taskId = taskId
+        if segue.identifier == TasksViewController.editSegueIdentifier {
+            let taskId = sender as! String
+            let controller = segue.destination as! TaskEditViewController
+            controller.taskId = taskId
+        }
     }
 }
 

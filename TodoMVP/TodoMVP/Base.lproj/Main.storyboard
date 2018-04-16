@@ -93,12 +93,13 @@
                     <navigationItem key="navigationItem" title="タスク一覧" id="bsV-ty-agg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="woO-8U-Fzq">
                             <connections>
-                                <segue destination="M5X-A1-R6z" kind="show" identifier="edit" id="YSJ-9V-h4A"/>
+                                <segue destination="M5X-A1-R6z" kind="show" identifier="add" id="YSJ-9V-h4A"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mne-Py-3QR" id="ihG-B3-qlq"/>
+                        <segue destination="M5X-A1-R6z" kind="show" identifier="edit" id="feN-Ea-NdH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYL-HA-zOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,4 +196,7 @@
             <point key="canvasLocation" x="-732" y="196"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="feN-Ea-NdH"/>
+    </inferredMetricsTieBreakers>
 </document>
