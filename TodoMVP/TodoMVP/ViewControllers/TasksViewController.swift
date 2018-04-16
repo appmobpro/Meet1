@@ -12,7 +12,7 @@ class TasksViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let tasksPresenter = TasksPresenter()
+    private let tasksPresenter = TasksPresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +25,6 @@ class TasksViewController: UIViewController {
         super.viewWillAppear(animated)
 
         tableView.reloadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -44,10 +39,31 @@ extension TasksViewController: UITableViewDataSource {
         let task = tasksPresenter.task(indexPath.row)
         cell.taskTitleLabel.text = task.title
         cell.taskContentLabel.text = task.content
+        cell.taskId = task.id
+        cell.done = task.done
+        cell.delegate = self
         return cell
     }
-
-
-
 }
 
+extension TasksViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task = self.tasksPresenter.task(indexPath.row)
+        performSegue(withIdentifier: "edit", sender: task.id)
+    }
+}
+
+extension TasksViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let taskId = sender as! String
+        let controller = segue.destination as! TaskEditViewController
+        controller.taskId = taskId
+    }
+}
+
+extension TasksViewController: TaskTableViewCellDelegate {
+    func didChangeDoneState(to done: Bool, taskId: String) {
+        let taskStatePresenter = TaskStatePresenter(taskId: taskId)
+        taskStatePresenter.done = done
+    }
+}

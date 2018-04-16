@@ -12,31 +12,36 @@ import RealmSwift
 final class TaskEditPresenter {
 
     let realm = try! Realm()
-    var taskEntity = TaskEntity()
+    var taskEntity:TaskEntity
 
-    var title: String = "" {
-        didSet {
-            if title.isEmpty {
-                try! realm.write {
-                    realm.delete(taskEntity)
-                }
-                taskEntity = TaskEntity()
-            } else {
-                try! realm.write {
-                    taskEntity.title = title
-                    realm.add(taskEntity, update: true)
-                }
-            }
+    init(taskId: String?) {
+        if let taskId = taskId {
+            taskEntity = realm.object(ofType: TaskEntity.self, forPrimaryKey: taskId) ?? TaskEntity()
+        }else {
+            taskEntity = TaskEntity()
         }
     }
 
-    var content: String = "" {
-        didSet {
+    func updateTitle(title: String) {
+        if title.isEmpty {
             try! realm.write {
-                taskEntity.content = content
+                realm.delete(taskEntity)
+            }
+            taskEntity = TaskEntity()
+        } else {
+            try! realm.write {
+                taskEntity.title = title
                 realm.add(taskEntity, update: true)
             }
         }
     }
+    
+    func updateContent(content: String) {
+        try! realm.write {
+            taskEntity.content = content
+            realm.add(taskEntity, update: true)
+        }
+    }
+    
 }
 

@@ -54,24 +54,44 @@ class TodoMVPTests: XCTestCase {
         }
     }
 
-    func testExample() {
+    func testEditPresenter() {
 
-        let taskEditPresenter = TaskEditPresenter()
-        taskEditPresenter.title = "1"
-        taskEditPresenter.content = "c1"
+        let taskEditPresenter = TaskEditPresenter(taskId: nil)
+        taskEditPresenter.updateTitle(title: "1")
+        taskEditPresenter.updateContent(content: "c1")
 
         let tasksPresenter = TasksPresenter()
         XCTAssertEqual(tasksPresenter.taskCount, 1)
         let task = tasksPresenter.task(0)
         
+        XCTAssertFalse(task.done)
         XCTAssertEqual(task.title, "1")
         XCTAssertEqual(task.content, "c1")
 
-        taskEditPresenter.title = "2"
-        taskEditPresenter.content = "c2"
+        taskEditPresenter.updateTitle(title: "2")
+        taskEditPresenter.updateContent(content: "c2")
 
         XCTAssertEqual(tasksPresenter.taskCount, 1)
         XCTAssertEqual(task.title, "2")
         XCTAssertEqual(task.content, "c2")
+        
+        let taskStatePresenter = TaskStatePresenter(taskId: task.id)
+        taskStatePresenter.done = true
+        XCTAssertTrue(task.done)
+        
+        taskStatePresenter.done = false
+        XCTAssertFalse(task.done)
+        
     }
+    
+    func testTaskStatePresenter() {
+        
+    }
+
 }
+
+
+
+
+
+

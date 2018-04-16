@@ -8,24 +8,26 @@
 
 import UIKit
 
+protocol TaskTableViewCellDelegate: class {
+    func didChangeDoneState(to done: Bool, taskId: String)
+}
+
 class TaskTableViewCell: UITableViewCell {
+
+    var taskId: String!
+    weak var delegate: TaskTableViewCellDelegate?
 
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskContentLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    var done: Bool = false {
+        didSet {
+            doneButton.setTitle(done ? "☑" : "□", for: .normal)
+        }
     }
 
     @IBAction func doneTask(_ sender: Any) {
-        doneButton.setTitle("☑", for: .normal)
+        done = !done
+        delegate?.didChangeDoneState(to: done, taskId: taskId)
     }
 }

@@ -93,7 +93,7 @@
                     <navigationItem key="navigationItem" title="タスク一覧" id="bsV-ty-agg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="woO-8U-Fzq">
                             <connections>
-                                <segue destination="M5X-A1-R6z" kind="show" id="YSJ-9V-h4A"/>
+                                <segue destination="M5X-A1-R6z" kind="show" identifier="edit" id="YSJ-9V-h4A"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -169,6 +169,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="タスク登録" id="Kq5-2k-qvr"/>
+                    <connections>
+                        <outlet property="contentTextField" destination="rBz-fi-aeL" id="nbY-fW-FkD"/>
+                        <outlet property="titleTextFiled" destination="6Lh-Jr-Xz3" id="V0U-xY-QSD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWR-hT-T1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
